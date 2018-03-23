@@ -1,0 +1,38 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Chordy McChordface</title>
+
+		<link rel="stylesheet" href="css/style.css">
+
+		<script src="js/jquery-3.3.1.min.js"></script>
+		<script src="js/chords.js"></script>
+		<script src="js/piano.js"></script>
+		<script src="js/midi.js"></script>
+		<script src="js/tests.js"></script>
+		<script type="text/javascript">
+			$(function()
+			{
+				connectMidi(function(notes)
+				{
+					$('li.active').removeClass('active')
+					notes.forEach(function(note)
+					{
+						$('li[data-key="' + note.note + '"][data-octave=' + note.octave + ']').click()
+					})
+				})
+			})
+		</script>
+	</head>
+
+	<body>
+		<div id="p-wrapper">
+			<div id="piano"></div>
+		</div>
+		<div id="results">
+		</div>
+	</body>
+</html>
