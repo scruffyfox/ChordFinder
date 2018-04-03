@@ -296,7 +296,7 @@ function calculateChords(notes)
 		})
 
 		degrees = degrees.sort()
-		console.log([noteScale.scale, degrees])
+		// console.log([noteScale.scale, degrees])
 
 		// ignore only partial matches -- for now
 		if (degrees.length < notes.length) return
