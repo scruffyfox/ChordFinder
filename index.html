@@ -13,7 +13,8 @@
 		<script src="js/chords.js"></script>
 		<script src="js/piano.js"></script>
 		<script src="js/midi.js"></script>
-		<script src="js/tests.js"></script>
+		<script src="js/keyboard.js"></script>
+		<!-- <script src="js/tests.js"></script> -->
 		<script type="text/javascript">
 			$(function()
 			{
@@ -23,6 +24,51 @@
 					notes.forEach(function(note)
 					{
 						$('li[data-key="' + note.note + '"][data-octave=' + note.octave + ']').click()
+					})
+				})
+
+				connectKeyboard(function(keys)
+				{
+					// keyboard -> note
+					const keyboardMap = {
+						"a": "c",
+						"w": "c#",
+						"s": "d",
+						"e": "d#",
+						"d": "e",
+						"f": "f",
+						"t": "f#",
+						"g": "g",
+						"y": "g#",
+						"h": "a",
+						"u": "a#",
+						"j": "b"
+					}
+
+					// loop through all the keys and select the ones that match the keys. deselect everything else
+					$('#piano li').each(function()
+					{
+						if ($(this).attr("data-octave") != "1") return
+
+						var itemNote = $(this).attr("data-key")
+
+						var activated = false
+						for (var index = 0; index < keys.length; index++)
+						{
+							if (itemNote == keyboardMap[keys[index].key])
+							{
+								activated = true
+								if (!$(this).hasClass('active'))
+								{
+									$(this).click()
+								}
+							}
+						}
+
+						if (!activated)
+						{
+							PIANO.pianoRelease($(this))
+						}
 					})
 				})
 			})
