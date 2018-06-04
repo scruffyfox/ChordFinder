@@ -37,7 +37,7 @@ var PIANO = {
 		'C8' : 'C8.[mp3|ogg]'
 	}, {
 		'release' : 1,
-		'baseUrl' : '../samples/'
+		'baseUrl' : 'samples/'
 	}).toMaster(),
 
 	pianoRelease: function(event)
